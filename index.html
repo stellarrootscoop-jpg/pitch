@@ -1,1 +1,1230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stellar Roots — Safe Land Stewardship</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+  :root {
+    --forest: #1a2e1a;
+    --moss: #3a5a2a;
+    --sage: #7a9a6a;
+    --cream: #f4f0e8;
+    --sand: #e8e0d0;
+    --gold: #c8a84a;
+    --rust: #8a4a2a;
+    --text-dark: #1a1a1a;
+    --text-mid: #4a4a3a;
+  }
+
+  html { scroll-behavior: smooth; }
+  
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 3rem;
+    background: rgba(26,46,26,0.95);
+    backdrop-filter: blur(8px);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    color: var(--cream);
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+  }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a {
+    color: rgba(244,240,232,0.7);
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* SLIDES */
+  .slide {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* SLIDE 1 — HERO */
+  .slide-hero {
+    background: var(--forest);
+    padding: 6rem 3rem 4rem;
+  }
+  .hero-texture {
+    position: absolute; inset: 0;
+    background-image: 
+      radial-gradient(ellipse at 80% 20%, rgba(122,154,106,0.2) 0%, transparent 60%),
+      radial-gradient(ellipse at 20% 80%, rgba(200,168,74,0.1) 0%, transparent 50%);
+  }
+  .hero-grid-line {
+    position: absolute; inset: 0;
+    background-image: 
+      linear-gradient(rgba(122,154,106,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(122,154,106,0.06) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-inner {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .hero-tag {
+    display: inline-block;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border-radius: 2px;
+    margin-bottom: 2rem;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--cream);
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--sage);
+  }
+  .hero-sub {
+    color: rgba(244,240,232,0.65);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+  .hero-cta {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--forest);
+    padding: 0.9rem 2rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.2s;
+  }
+  .hero-cta:hover { background: #d4b85a; }
+  .hero-right {
+    position: relative;
+  }
+  .hero-stat-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(122,154,106,0.3);
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 1rem;
+  }
+  .hero-stat-card:last-child { margin-bottom: 0; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--gold);
+    font-weight: 700;
+  }
+  .stat-label {
+    color: rgba(244,240,232,0.6);
+    font-size: 0.85rem;
+    margin-top: 0.3rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* SLIDE 2 — PROBLEM */
+  .slide-problem {
+    background: var(--sand);
+    padding: 6rem 3rem;
+  }
+  .slide-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .slide-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+  .slide-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    color: var(--forest);
+    line-height: 1.2;
+    margin-bottom: 3rem;
+    max-width: 700px;
+  }
+  .problem-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .problem-card {
+    background: white;
+    border-radius: 8px;
+    padding: 2rem;
+    border-top: 3px solid var(--rust);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  }
+  .problem-icon {
+    width: 40px; height: 40px;
+    background: rgba(138,74,42,0.1);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    margin-bottom: 1.2rem;
+  }
+  .problem-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--forest);
+    margin-bottom: 0.7rem;
+  }
+  .problem-card p {
+    font-size: 0.88rem;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+
+  /* SLIDE 3 — SOLUTION */
+  .slide-solution {
+    background: var(--forest);
+    padding: 6rem 3rem;
+  }
+  .solution-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .solution-left .slide-label { color: var(--sage); }
+  .solution-left .slide-title { color: var(--cream); }
+  .solution-body {
+    color: rgba(244,240,232,0.7);
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+  .solution-features {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .sol-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .sol-dot {
+    width: 8px; height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+  .sol-feature p {
+    color: rgba(244,240,232,0.8);
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+  .solution-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .sol-pillar {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(122,154,106,0.25);
+    border-radius: 8px;
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .sol-pillar-icon {
+    font-size: 1.8rem;
+    flex-shrink: 0;
+  }
+  .sol-pillar h4 {
+    font-family: 'Playfair Display', serif;
+    color: var(--cream);
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+  }
+  .sol-pillar p {
+    color: rgba(244,240,232,0.55);
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+
+  /* SLIDE 4 — MARKET */
+  .slide-market {
+    background: var(--cream);
+    padding: 6rem 3rem;
+  }
+  .market-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  .market-card {
+    background: var(--forest);
+    border-radius: 10px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .market-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 3px;
+    background: var(--gold);
+  }
+  .market-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    color: var(--gold);
+    font-weight: 900;
+    margin-bottom: 0.5rem;
+  }
+  .market-name {
+    color: var(--sage);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+    font-weight: 500;
+  }
+  .market-desc {
+    color: rgba(244,240,232,0.6);
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+  .market-insight {
+    margin-top: 3rem;
+    background: var(--moss);
+    border-radius: 10px;
+    padding: 2.5rem 3rem;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+  }
+  .market-insight-icon {
+    font-size: 3rem;
+    flex-shrink: 0;
+  }
+  .market-insight h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--cream);
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+  }
+  .market-insight p {
+    color: rgba(244,240,232,0.7);
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  /* SLIDE 5 — PRODUCT */
+  .slide-product {
+    background: var(--sand);
+    padding: 6rem 3rem;
+  }
+  .product-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .product-screen {
+    background: var(--forest);
+    border-radius: 12px;
+    padding: 2.5rem;
+    box-shadow: 0 20px 60px rgba(26,46,26,0.3);
+    position: relative;
+  }
+  .screen-bar {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 1.5rem;
+  }
+  .screen-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+  }
+  .screen-dot:nth-child(1) { background: #ff5f56; }
+  .screen-dot:nth-child(2) { background: #ffbd2e; }
+  .screen-dot:nth-child(3) { background: #27c93f; }
+  .screen-section {
+    margin-bottom: 1rem;
+  }
+  .screen-label {
+    color: var(--sage);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+  .screen-item {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(122,154,106,0.2);
+    border-radius: 6px;
+    padding: 0.8rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+  .screen-item-name {
+    color: var(--cream);
+    font-size: 0.8rem;
+  }
+  .screen-badge {
+    background: rgba(200,168,74,0.2);
+    color: var(--gold);
+    font-size: 0.65rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    font-weight: 500;
+  }
+  .screen-badge.green {
+    background: rgba(122,154,106,0.2);
+    color: var(--sage);
+  }
+  .product-features {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .prod-feature {
+    padding-left: 1.5rem;
+    border-left: 2px solid var(--moss);
+  }
+  .prod-feature h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--forest);
+    margin-bottom: 0.3rem;
+  }
+  .prod-feature p {
+    font-size: 0.85rem;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+
+  /* SLIDE 6 — TRACTION */
+  .slide-traction {
+    background: var(--forest);
+    padding: 6rem 3rem;
+  }
+  .traction-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .traction-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(122,154,106,0.2);
+    border-radius: 8px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+  .traction-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+  .traction-label {
+    color: rgba(244,240,232,0.6);
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+  .traction-proof {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .proof-item {
+    background: rgba(122,154,106,0.12);
+    border-radius: 8px;
+    padding: 1.5rem;
+  }
+  .proof-item h4 {
+    color: var(--sage);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  .proof-item p {
+    color: rgba(244,240,232,0.75);
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  /* SLIDE 7 — BUSINESS MODEL */
+  .slide-biz {
+    background: var(--cream);
+    padding: 6rem 3rem;
+  }
+  .biz-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .biz-card {
+    border: 1px solid rgba(58,90,42,0.2);
+    border-radius: 8px;
+    padding: 2rem 1.5rem;
+    background: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .biz-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--moss), var(--gold));
+  }
+  .biz-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--forest);
+    margin-bottom: 0.5rem;
+  }
+  .biz-card .phase {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--sage);
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+  .biz-card p {
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+  .path-to-revenue {
+    margin-top: 3rem;
+    background: var(--forest);
+    border-radius: 10px;
+    padding: 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+    text-align: center;
+  }
+  .ptr-item h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 1.5rem;
+    margin-bottom: 0.4rem;
+  }
+  .ptr-item p {
+    color: rgba(244,240,232,0.6);
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+  .ptr-divider {
+    width: 1px;
+    height: 60px;
+    background: rgba(122,154,106,0.3);
+    margin: 0 auto;
+  }
+
+  /* SLIDE 8 — TEAM */
+  .slide-team {
+    background: var(--sand);
+    padding: 6rem 3rem;
+  }
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .team-card {
+    background: white;
+    border-radius: 8px;
+    padding: 1.8rem 1.5rem;
+    border-top: 3px solid var(--moss);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  }
+  .team-initial {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: var(--forest);
+    color: var(--cream);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1rem;
+  }
+  .team-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    color: var(--forest);
+    margin-bottom: 0.25rem;
+  }
+  .team-card .role {
+    font-size: 0.75rem;
+    color: var(--sage);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.7rem;
+  }
+  .team-card p {
+    font-size: 0.8rem;
+    color: var(--text-mid);
+    line-height: 1.5;
+  }
+
+  /* SLIDE 9 — ASK */
+  .slide-ask {
+    background: var(--moss);
+    padding: 6rem 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .ask-texture {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(ellipse at 70% 50%, rgba(200,168,74,0.15) 0%, transparent 60%);
+  }
+  .ask-inner {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .ask-left .slide-label { color: var(--gold); }
+  .ask-left .slide-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    color: var(--cream);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+  .ask-left p {
+    color: rgba(244,240,232,0.7);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+  .ask-amounts {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .ask-tier {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(244,240,232,0.15);
+    border-radius: 8px;
+    padding: 1.5rem 2rem;
+  }
+  .ask-tier h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 1.6rem;
+    margin-bottom: 0.3rem;
+  }
+  .ask-tier h4 {
+    color: var(--cream);
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+  .ask-tier p {
+    color: rgba(244,240,232,0.6);
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+  .ask-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .use-item {
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+    background: rgba(255,255,255,0.06);
+    border-radius: 8px;
+    padding: 1.2rem 1.5rem;
+  }
+  .use-pct {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--gold);
+    font-weight: 700;
+    flex-shrink: 0;
+    min-width: 60px;
+  }
+  .use-item h4 {
+    color: var(--cream);
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+    font-weight: 500;
+  }
+  .use-item p {
+    color: rgba(244,240,232,0.55);
+    font-size: 0.8rem;
+    line-height: 1.5;
+    margin-bottom: 0;
+  }
+
+  /* SLIDE 10 — CLOSE */
+  .slide-close {
+    background: var(--forest);
+    padding: 6rem 3rem;
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .close-bg {
+    position: absolute; inset: 0;
+    background-image: 
+      radial-gradient(ellipse at 50% 50%, rgba(58,90,42,0.5) 0%, transparent 70%),
+      radial-gradient(ellipse at 10% 90%, rgba(200,168,74,0.1) 0%, transparent 40%);
+  }
+  .close-inner { position: relative; max-width: 700px; }
+  .close-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+  .close-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    color: var(--cream);
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+  .close-title em {
+    font-style: italic;
+    color: var(--sage);
+  }
+  .close-sub {
+    color: rgba(244,240,232,0.6);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+  .close-contact {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .contact-item {
+    color: rgba(244,240,232,0.5);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+  }
+  .contact-item span {
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  /* SECTION DIVIDERS */
+  .slide-number {
+    position: absolute;
+    bottom: 2rem;
+    right: 3rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    color: rgba(0,0,0,0.04);
+    font-weight: 900;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+  .slide-number.light {
+    color: rgba(255,255,255,0.04);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .hero-inner, .solution-grid, .product-grid, .ask-inner {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .problem-grid, .market-grid, .traction-grid, .biz-grid, .team-grid, .traction-proof {
+      grid-template-columns: 1fr 1fr;
+    }
+    .path-to-revenue { grid-template-columns: 1fr; gap: 1.5rem; }
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .slide { padding: 5rem 1.5rem 3rem !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">✦ Stellar Roots</div>
+  <div class="nav-links">
+    <a href="#problem">Problem</a>
+    <a href="#solution">Solution</a>
+    <a href="#market">Market</a>
+    <a href="#traction">Traction</a>
+    <a href="#ask">The Ask</a>
+  </div>
+</nav>
+
+<!-- SLIDE 1: HERO -->
+<section class="slide slide-hero">
+  <div class="hero-texture"></div>
+  <div class="hero-grid-line"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-tag">✦ Regen-Tech · Seed Stage</div>
+      <h1 class="hero-title">Land Sovereignty<br>for the <em>Economically<br>Vulnerable</em></h1>
+      <p class="hero-sub">Stellar Roots is building the blockchain infrastructure that connects global land projects, regenerative investors, and land stewards — creating a solidarity economy rooted in the earth.</p>
+      <a href="#ask" class="hero-cta">View the Opportunity →</a>
+    </div>
+    <div class="hero-right">
+      <div class="hero-stat-card">
+        <div class="stat-num">$300K</div>
+        <div class="stat-label">Seed funding target · Platform + launch infrastructure</div>
+      </div>
+      <div class="hero-stat-card">
+        <div class="stat-num">69 acres</div>
+        <div class="stat-label">Operating cooperative in Virginia · Proof of concept active</div>
+      </div>
+      <div class="hero-stat-card">
+        <div class="stat-num">3 continents</div>
+        <div class="stat-label">Existing land partnerships · VA, Trinidad, Spain</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-number light">01</div>
+</section>
+
+<!-- SLIDE 2: PROBLEM -->
+<section class="slide slide-problem" id="problem">
+  <div class="slide-inner">
+    <div class="slide-label">The Problem</div>
+    <h2 class="slide-title">Land and capital are locked away from the communities who could transform them.</h2>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-icon">🔒</div>
+        <h3>Extractive Speculation</h3>
+        <p>Land markets are dominated by speculative investors who extract value from communities rather than building resilience. Regenerative projects get outbid or locked out entirely.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">🌐</div>
+        <h3>Fragmented Infrastructure</h3>
+        <p>Land stewards connect through WhatsApp groups and personal networks. No verified listings. No formal agreements. No way to scale trust across borders.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">💸</div>
+        <h3>No Regenerative Finance</h3>
+        <p>Impact investors want to fund regenerative agriculture — but there's no trusted, transparent marketplace to connect them with vetted land projects and track outcomes.</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-number">02</div>
+</section>
+
+<!-- SLIDE 3: SOLUTION -->
+<section class="slide slide-solution" id="solution">
+  <div class="slide-inner">
+    <div class="solution-grid">
+      <div class="solution-left">
+        <div class="slide-label">The Solution</div>
+        <h2 class="slide-title" style="color:var(--cream)">A trust layer for the regenerative land economy.</h2>
+        <p class="solution-body">Safe Land Stewardship is a blockchain-powered platform where landholders and supporters connect, create transparent agreements, and build verified track records — at scale, across continents.</p>
+        <div class="solution-features">
+          <div class="sol-feature">
+            <div class="sol-dot"></div>
+            <p>Landholders list verified projects with clear participation models: volunteer, work-trade, paid, or investment</p>
+          </div>
+          <div class="sol-feature">
+            <div class="sol-dot"></div>
+            <p>Smart contracts automate agreements, contribution tracking, and transparent revenue sharing</p>
+          </div>
+          <div class="sol-feature">
+            <div class="sol-dot"></div>
+            <p>Identity verification and community reviews create safety for all participants — especially women and marginalized groups</p>
+          </div>
+        </div>
+      </div>
+      <div class="solution-right">
+        <div class="sol-pillar">
+          <div class="sol-pillar-icon">🌱</div>
+          <div>
+            <h4>Land Registry</h4>
+            <p>Verified listings from global land projects with photos, skill needs, participation terms, and ecological mission</p>
+          </div>
+        </div>
+        <div class="sol-pillar">
+          <div class="sol-pillar-icon">🤝</div>
+          <div>
+            <h4>Smart Agreements</h4>
+            <p>On-chain agreement hashing creates tamper-proof records of commitments between landholders and stewards</p>
+          </div>
+        </div>
+        <div class="sol-pillar">
+          <div class="sol-pillar-icon">💰</div>
+          <div>
+            <h4>Regenerative Finance</h4>
+            <p>Micro-funding, escrow, and revenue-sharing infrastructure connects ethical capital to land projects transparently</p>
+          </div>
+        </div>
+        <div class="sol-pillar">
+          <div class="sol-pillar-icon">🛡️</div>
+          <div>
+            <h4>Trust & Safety</h4>
+            <p>Identity verification, community reviews, and admin oversight designed for non-traditional travelers and vulnerable users</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-number light">03</div>
+</section>
+
+<!-- SLIDE 4: MARKET -->
+<section class="slide slide-market" id="market">
+  <div class="slide-inner">
+    <div class="slide-label">Market Opportunity</div>
+    <h2 class="slide-title">Three converging trillion-dollar shifts.</h2>
+    <div class="market-grid">
+      <div class="market-card">
+        <div class="market-num">$26T</div>
+        <div class="market-name">Regenerative Agriculture</div>
+        <div class="market-desc">Global agriculture market transitioning toward regenerative practices. Demand for land stewardship platforms is at an all-time high.</div>
+      </div>
+      <div class="market-card">
+        <div class="market-num">$35T</div>
+        <div class="market-name">Impact Investing</div>
+        <div class="market-desc">ESG and impact investors seeking transparent, verifiable land and ecological investments with community benefit.</div>
+      </div>
+      <div class="market-card">
+        <div class="market-num">$5.4T</div>
+        <div class="market-name">Creator / Gig Economy</div>
+        <div class="market-desc">Millions of skilled workers, ethical travelers, and learners seeking purpose-driven alternatives to traditional employment.</div>
+      </div>
+    </div>
+    <div class="market-insight">
+      <div class="market-insight-icon">🌍</div>
+      <div>
+        <h3>Regen-Tech is an unclaimed category.</h3>
+        <p>No platform exists that combines land stewardship, regenerative finance, blockchain transparency, and community safety into a single trusted marketplace. Stellar Roots is positioned to define and own this space — the way Airbnb defined home-sharing or OpenSea defined NFT markets.</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-number">04</div>
+</section>
+
+<!-- SLIDE 5: PRODUCT -->
+<section class="slide slide-product" id="product">
+  <div class="slide-inner">
+    <div class="slide-label">The Product</div>
+    <h2 class="slide-title">A living prototype, ready for beta.</h2>
+    <div class="product-grid">
+      <div class="product-screen">
+        <div class="screen-bar">
+          <div class="screen-dot"></div>
+          <div class="screen-dot"></div>
+          <div class="screen-dot"></div>
+        </div>
+        <div class="screen-section">
+          <div class="screen-label">🌱 Active Land Projects</div>
+          <div class="screen-item">
+            <span class="screen-item-name">Stellar Roots — Amherst, Virginia</span>
+            <span class="screen-badge">Work-Trade</span>
+          </div>
+          <div class="screen-item">
+            <span class="screen-item-name">Cocoa Farm — Trinidad & Tobago</span>
+            <span class="screen-badge green">Verified</span>
+          </div>
+          <div class="screen-item">
+            <span class="screen-item-name">Permaculture Hub — Catalonia, Spain</span>
+            <span class="screen-badge">Volunteer</span>
+          </div>
+        </div>
+        <div class="screen-section">
+          <div class="screen-label">📋 Agreement Status</div>
+          <div class="screen-item">
+            <span class="screen-item-name">Contribution Log · Week 3</span>
+            <span class="screen-badge green">On-chain ✓</span>
+          </div>
+          <div class="screen-item">
+            <span class="screen-item-name">Revenue Share · Q1 2025</span>
+            <span class="screen-badge">Pending</span>
+          </div>
+        </div>
+      </div>
+      <div class="product-features">
+        <div class="prod-feature">
+          <h4>Live Prototype Available</h4>
+          <p>A working prototype exists at playcode.io — demonstrating the core UX flows for land listing, matching, and agreement creation.</p>
+        </div>
+        <div class="prod-feature">
+          <h4>MVP Ready in 10–11 Weeks</h4>
+          <p>Full MVP scoped by SoluLab with React/Node.js frontend, PostgreSQL backend, Polygon blockchain integration, and admin dashboard — $25K–$35K to build.</p>
+        </div>
+        <div class="prod-feature">
+          <h4>Three Portals, One Ecosystem</h4>
+          <p>Admin platform, Landholder portal, and Supporter portal — each role has dedicated flows for onboarding, matching, agreements, and contribution tracking.</p>
+        </div>
+        <div class="prod-feature">
+          <h4>Built for Non-Technical Users</h4>
+          <p>Custodial wallets via MagicLink mean participants never need to understand blockchain — they just experience transparency and safety.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-number">05</div>
+</section>
+
+<!-- SLIDE 6: TRACTION -->
+<section class="slide slide-traction" id="traction">
+  <div class="slide-inner">
+    <div class="slide-label" style="color:var(--sage)">Real-World Traction</div>
+    <h2 class="slide-title" style="color:var(--cream);max-width:700px">We're not pitching a concept. We're scaling a living cooperative.</h2>
+    <div class="traction-grid">
+      <div class="traction-card">
+        <div class="traction-num">69 ac</div>
+        <div class="traction-label">Active cooperative in Amherst, Virginia — operating since 2019</div>
+      </div>
+      <div class="traction-card">
+        <div class="traction-num">3</div>
+        <div class="traction-label">International land partnerships across Virginia, Trinidad, and Spain</div>
+      </div>
+      <div class="traction-card">
+        <div class="traction-num">6+ yrs</div>
+        <div class="traction-label">Founder track record in community development and land stewardship</div>
+      </div>
+      <div class="traction-card">
+        <div class="traction-num">∞</div>
+        <div class="traction-label">Network of Black, Indigenous, and queer communities primed for beta</div>
+      </div>
+    </div>
+    <div class="traction-proof">
+      <div class="proof-item">
+        <h4>Community Pilots</h4>
+        <p>Indigenous engagement programs and service learning initiatives demonstrate real demand for safe, structured land stewardship connections.</p>
+      </div>
+      <div class="proof-item">
+        <h4>Cross-Cultural Operations</h4>
+        <p>Managing relationships across multiple countries and cultures has proven Stellar Roots' model is globally replicable.</p>
+      </div>
+      <div class="proof-item">
+        <h4>Nonprofit + Cooperative</h4>
+        <p>Dual-structure organization (cooperative + 501c3 nonprofit) provides both impact credibility and commercial viability for investors.</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-number light">06</div>
+</section>
+
+<!-- SLIDE 7: BUSINESS MODEL -->
+<section class="slide slide-biz" id="biz">
+  <div class="slide-inner">
+    <div class="slide-label">Business Model</div>
+    <h2 class="slide-title">Multiple revenue streams aligned with community benefit.</h2>
+    <div class="biz-grid">
+      <div class="biz-card">
+        <div class="phase">Phase 1 · Launch</div>
+        <h4>Platform Fees</h4>
+        <p>Landholders pay listing fees and transaction commissions on paid placements and work-trade arrangements.</p>
+      </div>
+      <div class="biz-card">
+        <div class="phase">Phase 1 · Launch</div>
+        <h4>Grant Funding</h4>
+        <p>Eligible for USDA, BIPOC land sovereignty, regenerative agriculture, and digital equity grants — a near-term non-dilutive path.</p>
+      </div>
+      <div class="biz-card">
+        <div class="phase">Phase 2 · Growth</div>
+        <h4>Education Programs</h4>
+        <p>Paid ecological learning programs, certifications, and skills exchange courses for stewards and supporters.</p>
+      </div>
+      <div class="biz-card">
+        <div class="phase">Phase 3 · Scale</div>
+        <h4>Cooperative Dividends</h4>
+        <p>Tokenized revenue sharing returns value to active community members — aligning platform growth with user benefit.</p>
+      </div>
+    </div>
+    <div class="path-to-revenue">
+      <div class="ptr-item">
+        <h3>$35K</h3>
+        <p>MVP development cost for full platform launch including blockchain integration</p>
+      </div>
+      <div class="ptr-divider"></div>
+      <div class="ptr-item">
+        <h3>Beta Year 1</h3>
+        <p>Grant funding + early platform fees cover operations. Cooperative structure ensures community ownership from day one.</p>
+      </div>
+      <div class="ptr-divider"></div>
+      <div class="ptr-item">
+        <h3>$300K</h3>
+        <p>Full seed raise funds platform, infrastructure, education programs, and 18-month runway</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-number">07</div>
+</section>
+
+<!-- SLIDE 8: TEAM -->
+<section class="slide slide-team" id="team">
+  <div class="slide-inner">
+    <div class="slide-label">The Team</div>
+    <h2 class="slide-title">Ethics, technology, healing, and land — embodied, not borrowed.</h2>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-initial">K</div>
+        <h4>Kaamilah Muhammad</h4>
+        <div class="role">Founder · Strategy & Tech</div>
+        <p>Managing Director of 69-acre cooperative. Educator, strategist, and nonprofit founder with 15+ years in community development.</p>
+      </div>
+      <div class="team-card">
+        <div class="team-initial">G</div>
+        <h4>Gigi</h4>
+        <div class="role">Ethics Lead</div>
+        <p>Ensuring the platform's governance, community agreements, and AI principles are grounded in ethical frameworks.</p>
+      </div>
+      <div class="team-card">
+        <div class="team-initial">S</div>
+        <h4>Safiya</h4>
+        <div class="role">Healing & Investment</div>
+        <p>Bridges regenerative healing practices with impact investment strategy for community-centered capital deployment.</p>
+      </div>
+      <div class="team-card">
+        <div class="team-initial">T</div>
+        <h4>Trenda</h4>
+        <div class="role">Real Estate</div>
+        <p>Navigates land ownership structures, trust arrangements, and cooperative real estate law for the platform's landholder onboarding.</p>
+      </div>
+    </div>
+    <div style="margin-top:2rem;background:white;border-radius:8px;padding:1.5rem 2rem;border-left:3px solid var(--moss);">
+      <p style="font-size:0.85rem;color:var(--text-mid);line-height:1.6;"><strong style="color:var(--forest)">Advisors include:</strong> Aazim Muhammad (Law), Justin Trott (Technology), Ishmael Hamid (Corporate Impact), Derise Stovall (Programming), Christa Brown (Community Development), and Herb Goldstein (Cooperative Systems).</p>
+    </div>
+  </div>
+  <div class="slide-number">08</div>
+</section>
+
+<!-- SLIDE 9: ASK -->
+<section class="slide slide-ask" id="ask">
+  <div class="ask-texture"></div>
+  <div class="ask-inner">
+    <div class="ask-left">
+      <div class="slide-label">The Opportunity</div>
+      <h2 class="ask-title slide-title">We're raising $300K to plant the infrastructure of a new economy.</h2>
+      <p>We have the cooperative, the land, the global partnerships, and the working prototype. What we need now is the capital to build the platform infrastructure that makes this accessible to millions.</p>
+      <div class="ask-amounts">
+        <div class="ask-tier">
+          <h3>$35–75K</h3>
+          <h4>MVP Build + Beta Launch</h4>
+          <p>Full platform development, blockchain integration, beta user onboarding across Virginia, Trinidad, and Spain.</p>
+        </div>
+        <div class="ask-tier">
+          <h3>$300K</h3>
+          <h4>Full Seed Round</h4>
+          <p>Platform, team, education programs, global partnerships, and 18-month growth runway toward Series A readiness.</p>
+        </div>
+      </div>
+    </div>
+    <div class="ask-right">
+      <div class="use-item">
+        <div class="use-pct">45%</div>
+        <div>
+          <h4>Platform Development</h4>
+          <p>Full MVP build, blockchain integration, security audits, and beta launch infrastructure</p>
+        </div>
+      </div>
+      <div class="use-item">
+        <div class="use-pct">20%</div>
+        <div>
+          <h4>Community & Operations</h4>
+          <p>Beta user onboarding, land partner activation, safety protocols, and community management</p>
+        </div>
+      </div>
+      <div class="use-item">
+        <div class="use-pct">20%</div>
+        <div>
+          <h4>Education Programs</h4>
+          <p>Ecological learning curricula, skills certification, and stewardship training content development</p>
+        </div>
+      </div>
+      <div class="use-item">
+        <div class="use-pct">15%</div>
+        <div>
+          <h4>Marketing & Partnerships</h4>
+          <p>Global storytelling campaign, accelerator presence, and ecosystem partnership development</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-number light">09</div>
+</section>
+
+<!-- SLIDE 10: CLOSE -->
+<section class="slide slide-close">
+  <div class="close-bg"></div>
+  <div class="close-inner">
+    <div class="close-eyebrow">✦ Stellar Roots Global Cooperative</div>
+    <h2 class="close-title">The earth is the original <em>commons</em>. Help us give it back.</h2>
+    <p class="close-sub">We're inviting investors, accelerators, and mission-aligned partners to join us in building the infrastructure for a solidarity economy rooted in land — one that centers the economically and ecologically vulnerable.</p>
+    <div class="close-contact">
+      <div class="contact-item">Email: <span>kaamilah@proton.me</span></div>
+      <div class="contact-item">Prototype: <span>2389711.playcode.io</span></div>
+      <div class="contact-item">Location: <span>Amherst, Virginia</span></div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
